@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package profile;
+
+service ProfileService {
+  rpc CreateProfile(CreateProfileRequest) returns (Profile) {}
+  rpc GetProfile(GetProfileRequest) returns (Profile) {}
+  rpc UpdateProfile(UpdateProfileRequest) returns (Profile) {}
+  rpc DeleteProfile(DeleteProfileRequest) returns (DeleteProfileResponse) {}
+  rpc UploadImage(UploadImageRequest) returns (UploadImageResponse) {}
+}
+
+message CreateProfileRequest {
+  string userId = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message GetProfileRequest {
+  string userId = 1;
+}
+
+message UpdateProfileRequest {
+  string userId = 1;
+  string name = 2;
+  string description = 3;
+}
+
+message DeleteProfileRequest {
+  string userId = 1;
+}
+
+message Profile {
+  string userId = 1;
+  string name = 2;
+  string description = 3;
+  string imageUrl = 4;
+  string createdAt = 5;
+}
+
+message DeleteProfileResponse {
+  bool success = 1;
+}
+
+message UploadImageRequest {
+  string userId = 1;
+  bytes image = 2;
+}
+
+message UploadImageResponse {
+  string imageUrl = 1;
+}

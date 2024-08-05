@@ -1,0 +1,18 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("PROFILE_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../node_modules/@prisma/client-profile"
+}
+
+model Profile {
+  userId      String   @id
+  name        String
+  description String?
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
